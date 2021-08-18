@@ -1,0 +1,33 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container">
+
+			<div class="row justify-content-center mt-3">
+				<div class="col col-md-6">
+					<a href="{% url 'post-list' %}" class="btn btn-light">Back to feed</a>
+				</div>
+			</div>
+
+			<div class="row justify-content-center mt-3">
+				<div class="col col-md-6 border-bottom">
+					<h5>Edit your post</h5>
+				</div>
+			</div>
+
+			<div class="row justify-content-center mt-3">
+				<div class="col col-md-6 border-bottom mb-4">
+					<form class="mb-2" method="post">
+						{% csrf_token %}
+						{{ form | crispy }}
+						<div class="d-grid">
+							<button class="btn btn-success mt-3">Post!</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+	</div>
+{% endblock content %}

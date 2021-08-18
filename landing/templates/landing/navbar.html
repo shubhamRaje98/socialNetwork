@@ -1,0 +1,40 @@
+
+<script src="https://kit.fontawesome.com/fe21b99c1d.js" crossorigin="anonymous"></script>	
+
+<style>
+
+
+</style>
+
+<div class="container">
+<nav class="navbar navbar-expand-lg" >
+  <div class="container-fluid">
+    <a class="navbar-brand" 
+    {% if user.is_authenticated %}
+    href="{% url 'post-list' %}"
+    {% else %}
+    href="{% url 'index' %}"
+    {% endif %} 
+    style="color:black;"><i class="fa fa-handshake-o" aria-hidden="true"></i> Social Network</a>
+ 
+    
+      <form class="d-flex col-lg-4 col-md-6 col-sm-4">
+        <input class="form-control me-2" type="search" placeholder="@Search" aria-label="Search">
+        <div class="dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true" style="color: black;"></i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% if user.profile.pk %}
+              <li><a class="dropdown-item" href="{% url 'profile' user.profile.pk %}">Profile</a></li>
+            {% endif %}
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/accounts/logout/">Signout</a></li>
+          </ul>
+     </div>
+      </form>
+    
+  </div>
+</nav>
+</div>

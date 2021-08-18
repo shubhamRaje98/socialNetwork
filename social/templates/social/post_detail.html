@@ -1,0 +1,57 @@
+{% extends 'landing/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+	<div class="container">
+			<div class="row justify-content-center mt-3">
+				<div class="col col-md-6">
+					<a href="{% url 'post-list' %}" class="btn btn-light">Back to feed</a>
+				</div>
+			</div>
+
+		
+			<div class="row justify-content-center mt-3">
+				<div class="col col-md-6 border-bottom">
+					<p><strong>@{{ post.author }}</strong> <i>{{ post.created_on }}</i>
+					{% if request.user == post.author %}
+					<div style="float: right;">
+						  <a href="{% url 'post-edit' post.pk %}" style="color: black;"><i class="fa fa-pencil-square" aria-hidden="true"></i></a> 
+							<a href="{% url 'post-delete' post.pk %}" style="color: black;">
+								<i class="fa fa-trash" aria-hidden="true"></i></a>
+					</div>
+					{% endif %}
+					</p>
+					<p>{{ post.body }}</p>
+				</div>
+			</div>
+		
+		<div class="row justify-content-center mt-3">
+			<div class="col col-md-6 border-bottom mb-4">
+				<form class="mb-2" method="post">
+					{% csrf_token %}
+					{{ form | crispy }}
+					<div class="d-grid">
+						<button class="btn btn-success mt-3">Comment!</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		{% for comment in comments %}
+		<div class="row justify-content-center mt-3">
+			<div class="col col-md-6 border-bottom mb-4 border-bottom">
+				<p><strong>{{ comment.author }} </strong> {{ comment.created_on }}</p>
+
+					{% if request.user == comment.author %}
+					<div style="float: right;">
+
+						<a href="{% url 'comment-delete' post.pk comment.pk %}" style="color: black;">
+								<i class="fa fa-trash" aria-hidden="true"></i></a>
+					</div>
+					{% endif %}
+
+				<p>{{ comment.comment }}</p>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endblock content %}
