@@ -1,7 +1,7 @@
-#This is social networking website
-It is not a typical social networking website. The main aim of this project is give people a platform to publish there opinions globally.
+This is social networking website,
+The aim of this project is to give people a platform to publish there opinions globally.
 People may post images or just a text, other user can like/dislike the post.
-Helps to provide a forum to exchange ideas on various topics. 
+Helps to provide a forum to broadcast ideas on various topics. 
 Basically formal version of typical social media apps.
 
 here are some screen shots : 
